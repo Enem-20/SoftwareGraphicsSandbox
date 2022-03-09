@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SoftwareGraphicsSandbox;
 
 namespace UserSoftwareGraphicsSandbox{
     class PrimaryRenderObject{
         private int[] args;
-        int x { get{ return args[0]; } set { args[0] = value; } }
-        int y { get { return args[1]; } set { args[1] = value; } }
+        public Color32 color32 = new Color32();
+        //public int x { get{ return args[0]; } set { args[0] = value; } }
+        //public int y { get { return args[1]; } set { args[1] = value; } }
         public PrimaryRenderObject(int[] newArgs){
             SetArgs(newArgs);
         }
-        public PrimaryRenderObject(int x = 0, int y = 0, int size = 1){
+        public PrimaryRenderObject(int size = 1){
             args = new int[size];
-            this.x = x;
-            this.y = y;
         }
         public PrimaryRenderObject GetCopy(){
             PrimaryRenderObject renderObject = new PrimaryRenderObject();
@@ -30,7 +30,12 @@ namespace UserSoftwareGraphicsSandbox{
         //    renderObject.SetArgs(points);
         //    return renderObject;
         //}
-        public void SetArgs(int[] newArgs) { newArgs.CopyTo(args, 0); }
+        public void SetArgs(int[] newArgs) 
+        { 
+            if(args == null)
+                args = new int[newArgs.Length];    
+            newArgs.CopyTo(args, 0); 
+        }
         public int this[int index] { get { return args[index]; } set { args[index] = value;} }
     }
 }

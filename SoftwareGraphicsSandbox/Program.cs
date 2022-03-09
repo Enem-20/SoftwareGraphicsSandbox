@@ -22,8 +22,9 @@ namespace SoftwareGraphicsSandbox {
 
             Renderer renderer = new Renderer(form.Handle);
             image = renderer.BackBuffer;
-
-            while(_running){
+            UserSoftwareGraphicsSandbox.AnyLine anyLine = new UserSoftwareGraphicsSandbox.AnyLine(100, 100, 200, 200);
+            anyLine.color32 = Color32.Red;
+            while (_running){
                 //Render image 
                 image.FillColor(Color32.Black);
                 //Process window messages
@@ -31,9 +32,11 @@ namespace SoftwareGraphicsSandbox {
 
 
                 //example draw horizontal line
-                for (int x = 0; x < 100; ++x) {
-                    image.SetPixel(x + 100, 100, Color32.Green);
-                }
+                //for (int x = 0; x < 100; ++x) {
+                //    image.SetPixel(x + 100, 100, Color32.Green);
+                //}
+
+                anyLine.SetPixels(image);
 
                 //Show image in window
                 renderer.Present();
